@@ -2,7 +2,7 @@ package illusive.networks.service;
 
 import illusive.networks.dto.BaseDTO;
 import illusive.networks.entity.BaseEntity;
-import illusive.networks.mapper.CrudMapper;
+import illusive.networks.mapper.ICrudMapper;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,9 +18,9 @@ import java.util.stream.StreamSupport;
 public class SimpleCrudFacade<DTO extends BaseDTO, Entity extends BaseEntity> implements CrudFacade<DTO> {
 
     protected final CrudRepository<Entity, UUID> dao;
-    protected final CrudMapper<DTO, Entity> mapper;
+    protected final ICrudMapper<DTO, Entity> mapper;
 
-    public SimpleCrudFacade(CrudRepository<Entity, UUID> dao, CrudMapper<DTO, Entity> mapper) {
+    public SimpleCrudFacade(CrudRepository<Entity, UUID> dao, ICrudMapper<DTO, Entity> mapper) {
         this.dao = dao;
         this.mapper = mapper;
     }
@@ -42,23 +42,27 @@ public class SimpleCrudFacade<DTO extends BaseDTO, Entity extends BaseEntity> im
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void create(DTO dto) {
+    public UUID create(DTO dto) {
         Entity entity = mapper.toEntity(dto);
+        entity.setId(UUID.randomUUID());
         dao.save(entity);
+        return entity.getId();
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void createBulk(List<DTO> dtos) {
         List<Entity> entities = dtos.stream().map(mapper::toEntity).collect(Collectors.toList());
+        entities.forEach(entity -> entity.setId(UUID.randomUUID()));
         dao.saveAll(entities);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void edit(DTO dto) {
-        dao.deleteById(dto.getId());
+    public void edit(UUID id, DTO dto) {
+        dao.deleteById(id);
         Entity entity = mapper.toEntity(dto);
+        entity.setId(id);
         dao.save(entity);
     }
 

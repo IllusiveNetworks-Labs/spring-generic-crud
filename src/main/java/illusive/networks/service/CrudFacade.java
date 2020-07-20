@@ -17,11 +17,11 @@ public interface CrudFacade<DTO extends BaseDTO> {
 
     List<DTO> findAll();
 
-    void create(DTO dto);
+    UUID create(DTO dto);
 
     void createBulk(List<DTO> dtos);
 
-    void edit(DTO dto);
+    void edit(UUID id, DTO dto);
 
     void delete(UUID id);
 

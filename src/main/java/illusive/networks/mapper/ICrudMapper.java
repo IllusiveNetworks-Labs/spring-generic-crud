@@ -8,7 +8,7 @@ import org.springframework.data.repository.NoRepositoryBean;
  * Created by alon on 1/2/2020.
  */
 @NoRepositoryBean
-public interface CrudMapper<DTO extends BaseDTO, Entity extends BaseEntity> {
+public interface ICrudMapper<DTO extends BaseDTO, Entity extends BaseEntity> {
 
     Entity toEntity(DTO dto);
 

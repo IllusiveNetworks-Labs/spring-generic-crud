@@ -1,20 +1,22 @@
 package illusive.networks.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
+import java.util.Objects;
 import java.util.UUID;
 
 /**
  * Created by alon on 1/3/2020.
  */
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 public abstract class BaseDTO {
 
     protected UUID id;
+
+    public BaseDTO(UUID id) {
+        this.id = id;
+    }
+
+    public BaseDTO() {
+
+    }
 
     public UUID getId() {
         return id;
@@ -24,4 +26,16 @@ public abstract class BaseDTO {
         this.id = id;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BaseDTO baseDTO = (BaseDTO) o;
+        return Objects.equals(id, baseDTO.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }

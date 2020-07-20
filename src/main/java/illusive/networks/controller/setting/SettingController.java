@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class SettingController extends CrudController<SettingDTO> {
 
     @Autowired
-    private ISettingFacade settingFacade;
-
     public SettingController(ISettingFacade facade) {
         super(facade);
     }

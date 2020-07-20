@@ -8,5 +8,4 @@ import illusive.networks.service.CrudFacade;
  */
 public interface ISettingFacade extends CrudFacade<SettingDTO> {
 
-    Iterable<SettingDTO> otherMethod();
 }
