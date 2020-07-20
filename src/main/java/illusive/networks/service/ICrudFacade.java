@@ -11,7 +11,7 @@ import java.util.UUID;
  * Created by alon on 1/2/2020.
  */
 @NoRepositoryBean
-public interface CrudFacade<DTO extends BaseDTO> {
+public interface ICrudFacade<DTO extends BaseDTO> {
 
     Optional<DTO> find(UUID id);
 

@@ -1,7 +1,7 @@
 package illusive.networks.controller;
 
 import illusive.networks.dto.BaseDTO;
-import illusive.networks.service.CrudFacade;
+import illusive.networks.service.ICrudFacade;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,9 +15,9 @@ import java.util.UUID;
  */
 public abstract class CrudController<DTO extends BaseDTO> {
 
-    protected final CrudFacade<DTO> facade;
+    protected final ICrudFacade<DTO> facade;
 
-    protected CrudController(CrudFacade<DTO> facade) {
+    protected CrudController(ICrudFacade<DTO> facade) {
         this.facade = facade;
     }
 
