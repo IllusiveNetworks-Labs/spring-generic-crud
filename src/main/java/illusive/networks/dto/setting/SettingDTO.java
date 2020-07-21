@@ -13,6 +13,6 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = true)
 public class SettingDTO extends BaseDTO {
 
-    private String member;
+    private String data;
 
 }

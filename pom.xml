@@ -12,7 +12,7 @@
 	<artifactId>spring-generic-crud</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>spring-generic-crud</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Example project for generic crud</description>
 
 	<properties>
 		<java.version>11</java.version>

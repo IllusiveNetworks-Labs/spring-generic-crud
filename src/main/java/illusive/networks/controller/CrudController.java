@@ -2,6 +2,7 @@ package illusive.networks.controller;
 
 import illusive.networks.dto.BaseDTO;
 import illusive.networks.service.ICrudFacade;
+import javassist.NotFoundException;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,8 +28,8 @@ public abstract class CrudController<DTO extends BaseDTO> {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public DTO get(@PathVariable(value = "id") UUID id) {
-        return facade.find(id).orElse(null);
+    public DTO get(@PathVariable(value = "id") UUID id) throws NotFoundException {
+        return facade.find(id).orElseThrow(() -> new NotFoundException(String.format("could not get item with id: %s", id)));
     }
 
     @RequestMapping(method = RequestMethod.POST)

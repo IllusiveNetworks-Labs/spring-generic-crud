@@ -15,12 +15,12 @@ import java.util.stream.StreamSupport;
 /**
  * Created by alon on 1/2/2020.
  */
-public class SimpleCrudFacade<DTO extends BaseDTO, Entity extends BaseEntity> implements ICrudFacade<DTO> {
+public class CrudFacade<DTO extends BaseDTO, Entity extends BaseEntity> implements ICrudFacade<DTO> {
 
     protected final CrudRepository<Entity, UUID> dao;
     protected final ICrudMapper<DTO, Entity> mapper;
 
-    public SimpleCrudFacade(CrudRepository<Entity, UUID> dao, ICrudMapper<DTO, Entity> mapper) {
+    public CrudFacade(CrudRepository<Entity, UUID> dao, ICrudMapper<DTO, Entity> mapper) {
         this.dao = dao;
         this.mapper = mapper;
     }

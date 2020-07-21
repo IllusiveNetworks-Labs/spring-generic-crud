@@ -19,10 +19,10 @@ import java.util.UUID;
 @AllArgsConstructor
 public class Setting extends BaseEntity {
 
-    private String member;
+    private String data;
 
-    public Setting(UUID id, String member) {
+    public Setting(UUID id, String data) {
         super(id);
-        this.member = member;
+        this.data = data;
     }
 }
