@@ -17,7 +17,7 @@ import java.util.List;
  * Created by alon on 1/3/2020.
  */
 @Component
-public class SimpleCrudMapper<DTO extends BaseDTO, Entity extends BaseEntity> implements ICrudMapper<DTO, Entity> {
+public class CrudMapper<DTO extends BaseDTO, Entity extends BaseEntity> implements ICrudMapper<DTO, Entity> {
 
     protected MapperFacade mapper = null;
 
